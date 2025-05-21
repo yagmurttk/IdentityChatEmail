@@ -1,0 +1,51 @@
+﻿@using IdentityChatEmailNight.Entities
+@model List<Message>
+
+@{
+    Layout = "~/Views/Shared/_MessageLayout.cshtml";
+}
+
+<div class="email-right-box">
+    <form method="get" asp-action="Inbox" class="mb-3">
+        <div class="input-group">
+            <input type="text" name="search" class="form-control" placeholder="Konuya göre ara..." value="@ViewBag.Search" />
+
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">Ara</button>
+            </div>
+        </div>
+    </form>
+
+    <form method="post" action="/Message/ChangeMessageStatus">
+        <div role="toolbar" class="toolbar">
+            <div class="btn-group">
+                <button aria-expanded="false" data-toggle="dropdown" class="btn btn-dark dropdown-toggle" type="button">
+                    Gelen Mesajlar  <span class="caret m-l-5"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <button type="submit" class="btn btn-outline-danger">Okundu Olarak İşaretle</button>
+                </div>
+            </div>
+        </div>
+
+        @foreach (var item in Model)
+        {
+            <div class="email-list m-t-15">
+                <div class="message">
+                    <a href="/Message/MessageDetail/@item.MessageId">
+                        <div class="col-mail col-mail-1">
+                            <div class="email-checkbox">
+                                <input type="checkbox" name="messageID" value="@item.MessageId" class="message-checkbox" data-id="@item.MessageId">
+                                <label class="toggle" for="chk_@item.MessageId"></label>
+                            </div><span class="star-toggle ti-star"></span>
+                        </div>
+                        <div class="col-mail col-mail-2">
+                            <div class="subject">@item.Subject</div>
+                            <div class="date">@item.SendDate.ToString("dd/MM/yyyy")</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+    </form>
+</div>

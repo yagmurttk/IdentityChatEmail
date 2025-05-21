@@ -1,0 +1,49 @@
+﻿@model IdentityChatEmailNight.Entities.Message
+
+@{
+    Layout = "~/Views/Shared/_MessageLayout.cshtml";
+}
+
+<div class="email-right-box">
+
+    <form method="post" onsubmit="return sendAlert(event)">
+        <div class="compose-content mt-5">
+            <div class="form-group">
+                <input type="text" asp-for="ReceiverEmail" class="form-control bg-transparent" placeholder="  Mail Adresi">
+            </div>
+
+            <div class="form-group">
+                <input type="text" asp-for="Subject" class="form-control bg-transparent" placeholder=" Konu">
+            </div>
+
+            <div class="form-group">
+                <textarea class="textarea_editor form-control bg-light" asp-for="MessageDetail" rows="15" placeholder="Mesaj Detayı"></textarea>
+            </div>
+
+            <button class="btn btn-outline-success" type="submit">Gönder</button>
+        </div>
+    </form>
+
+    <script>
+        function sendAlert(event) {
+            event.preventDefault();
+
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Mesajınız başarıyla gönderildi",
+                showConfirmButton: false,
+                timer: 2000
+            }).then(() => {
+                event.target.submit();
+            });
+
+            return false;
+        }
+    </script>
+
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

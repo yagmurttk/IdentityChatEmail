@@ -12,5 +12,6 @@ namespace IdentityChatEmailNight.Context
             // projeyi 6'nın üstünde kullanıyorsak trust server certificate true yapmalıyız
 
         }
+        public DbSet<Message> Messages { get; set; }
     }
 }

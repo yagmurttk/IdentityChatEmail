@@ -1,0 +1,33 @@
+﻿@using IdentityChatEmailNight.Entities
+@model Message
+
+@{
+    ViewData["Title"] = "MessageDetail";
+    Layout = "~/Views/Shared/_MessageLayout.cshtml";
+}
+<div class="email-right-box">
+    <div class="read-content">
+
+        <div class="media pt-5">
+
+            <div class="media-body">
+                <h5 class="m-b-3">Gönderen: @Model.SenderEmail</h5>
+                <p class="m-b-2">Tarih: @Model.SendDate.ToShortDateString()</p>
+            </div>
+
+        </div>
+        <hr>
+        <div class="media mb-4 mt-1">
+            <div class="media-body">
+                <span class="float-right">@Model.SendDate</span>
+                <h4 class="m-0 text-primary">Konu: @Model.Subject</h4>
+            </div>
+        </div>
+        <h5 class="m-b-15">Alıcı: @Model.ReceiverEmail</h5>
+        <p>
+            @Model.MessageDetail
+        </p>
+        <hr>
+
+    </div>
+</div>
